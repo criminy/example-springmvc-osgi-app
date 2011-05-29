@@ -1,0 +1,12 @@
+<features>
+    <feature name="net.sheenobu.osgi.springmvc.example" version="${project.version}">
+    	<feature>http</feature>     
+        <bundle>mvn:org.springframework/org.springframework.web/3.0.5.RELEASE</bundle>        
+        <bundle>mvn:org.springframework/org.springframework.web.servlet/3.0.5.RELEASE</bundle>
+        <bundle>mvn:org.springframework.osgi/org.springframework.osgi.web/1.2.0</bundle>
+        
+        
+        <bundle>mvn:${project.groupId}/${project.groupId}.osgi.tutorial.modules.web.spring.support.osgi/${project.version}</bundle>
+        <bundle>mvn:${project.groupId}/${project.groupId}.osgi.tutorial.modules.web.example/${project.version}</bundle>        
+    </feature>
+</features>
