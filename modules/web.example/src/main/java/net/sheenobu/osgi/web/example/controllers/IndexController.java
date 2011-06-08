@@ -18,9 +18,10 @@ public class IndexController {
 	}
 	
 	@RequestMapping(value="/2", method=RequestMethod.GET)
-	public void two(Writer os) throws IOException
+	public String two() throws IOException
 	{
-		os.write("page two!");
+		return "two";
 	}
+	
 	
 }

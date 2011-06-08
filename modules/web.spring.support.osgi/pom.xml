@@ -63,6 +63,24 @@
 			<artifactId>com.springsource.javax.servlet</artifactId>
 			<version>2.5.0</version>
 		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.web</groupId>
+			<artifactId>pax-web-jsp</artifactId>
+			<version>0.4.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.web</groupId>
+			<artifactId>pax-web-service</artifactId>
+			<version>0.4.0</version>
+			<scope>provided</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.ops4j.pax.web-extender</groupId>
+			<artifactId>pax-web-ex-whiteboard</artifactId>
+			<version>0.4.0</version>
+			<scope>provided</scope>
+		</dependency>
 	</dependencies>
 </project>
 

@@ -15,22 +15,9 @@
 		<property name="order" value="1" />
 	</bean>
 
-	<!-- This bean sets up the Velocity environment for us based on a root path 
-		for templates. Optionally, a properties file can be specified for more control 
-		over the Velocity environment, but the defaults are pretty sane for file 
-		based template loading. -->
-	<bean id="velocityConfig"
-		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
-		<property name="resourceLoaderPath" value="classpath:/views/" />
-	</bean>
-
-	<!-- View resolvers can also be configured with ResourceBundles or XML files. 
-		If you need different view resolving based on Locale, you have to use the 
-		resource bundle resolver. -->
 	<bean id="viewResolver"
-		class="org.springframework.web.servlet.view.velocity.VelocityViewResolver">
-		<property name="cache" value="true" />
-		<property name="prefix" value="" />
-		<property name="suffix" value=".vm" />
+		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+		<property name="prefix" value="/jsp/" />
+		<property name="suffix" value=".jsp" />
 	</bean>
 </beans>

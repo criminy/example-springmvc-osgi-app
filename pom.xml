@@ -32,6 +32,11 @@
 			<name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
 			<url>http://repository.springsource.com/maven/bundles/external</url>
 		</repository>
+		<repository>
+			<id>ops4j</id>
+			<name>ops4j</name>
+			<url>http://repository.ops4j.org/maven2</url>
+		</repository>
 	</repositories>
 
 	<build>

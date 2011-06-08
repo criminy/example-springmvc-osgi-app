@@ -15,7 +15,7 @@ mvn clean install
 rm -rf running/
 mkdir running
 cd running
-tar xfvz ../$TAR
+tar xfvz $TAR
 cd $(basename $(basename $1 .tar.gz) .tar.bzip2)
 ./bin/start
 sleep 5

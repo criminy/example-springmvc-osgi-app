@@ -5,8 +5,13 @@ import java.util.Hashtable;
 
 import javax.servlet.ServletContext;
 
+import org.ops4j.pax.web.extender.whiteboard.JspMapping;
+import org.ops4j.pax.web.extender.whiteboard.internal.util.WebContainerUtils;
+import org.ops4j.pax.web.extender.whiteboard.runtime.DefaultJspMapping;
+import org.ops4j.pax.web.service.WebContainer;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
+import org.osgi.service.http.HttpContext;
 import org.osgi.service.http.HttpService;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.osgi.context.BundleContextAware;
@@ -21,12 +26,17 @@ import org.springframework.web.servlet.DispatcherServlet;
  * 
  */
 public class OsgiHttpServiceSpringMvcSupport implements
-		BundleContextAware, InitializingBean 
+		BundleContextAware, InitializingBean
 		
 {
 	private BundleContext bundleContext;
 	private String contextConfigLocation;
 	private String pathSpec;
+	private String jspPattern;
+	
+	public void setJspPattern(String jspPattern) {
+		this.jspPattern = jspPattern;
+	}
 	
 	public String getContextConfigLocation() {
 		return contextConfigLocation;
@@ -97,7 +107,11 @@ public class OsgiHttpServiceSpringMvcSupport implements
 
 		ServiceReference sRef = arg0.getServiceReference(HttpService.class
 				.getName());
-		if (sRef != null) {
+		ServiceReference sRef2 = arg0.getServiceReference( "org.ops4j.pax.web.service.WebContainer" );
+		
+		if (sRef != null || sRef2 != null) {
+
+			
 			D dispatcherServlet = new D(this, arg0);
 			dispatcherServlet
 					.setContextClass(Class
@@ -108,10 +122,25 @@ public class OsgiHttpServiceSpringMvcSupport implements
 					"contextClass",
 					"org.springframework.osgi.web.context.support.OsgiBundleXmlWebApplicationContext");
 
+			
+			
+			
+			
+			WebContainer webContainer = (WebContainer) arg0.getService(sRef2);
+			
+			
 			HttpService service = (HttpService) arg0.getService(sRef);
 
+			HttpContext ctx = service.createDefaultHttpContext();			
+			
 			service.registerServlet(this.getPathSpec(), dispatcherServlet,
-					dict, null);
+					dict, ctx);
+			 			
+			webContainer.registerJsps(new String[]{"*.jsp"},ctx);
+			
+			
+		}else{
+			throw new NullPointerException();
 		}
 
 	}

@@ -7,19 +7,21 @@
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd">
-	
-	<bean class="net.sheenobu.osgi.web.spring.OsgiHttpServiceSpringMvcSupport" 
-		p:pathSpec="/example/*" p:contextConfigLocation="classpath*:/example-servlet.xml">
+
+	<bean class="net.sheenobu.osgi.web.spring.OsgiHttpServiceSpringMvcSupport"
+		p:pathSpec="/example/*" p:jspPattern="*.jsp" p:contextConfigLocation="classpath*:/example-servlet.xml">
 		<description>
-			Bean which binds our Spring MVC configuration, located in example-servlet.xml,
+			Bean which binds our Spring MVC configuration, located in
+			example-servlet.xml,
 			with the OSGI BundleContext and OSGI HttpService.
-		</description>	
-	</bean>	
+		</description>
+	</bean>
 
 	<context:annotation-config />
-	<context:component-scan base-package="net.sheenobu.osgi.web.example">	
-		<context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/>		 
-   	</context:component-scan>
+	<context:component-scan base-package="net.sheenobu.osgi.web.example">
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 
 </beans>
 
